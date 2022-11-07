@@ -117,7 +117,7 @@ states = sorted(["ac", "al", "ap", "am", "ba", "ce", "df",
 
 # rodar apenas o estado de Roraima (para testes, pois ele tem menos urnas)
 # lembre-se de remover o data/00/states.pickle quando alterar essa variavel
-states = ["rr"]
+#    states = ["rr"]
 
 for state in states:
     mkdir("data/" + state)
