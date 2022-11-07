@@ -26,11 +26,9 @@ $ python stage-2.py
 ...
 ```
 
-No inicio de cada programa tem um comentário ensinando o que cada um faz.
-
 IMPORTANTE: para testar em apenas um estado (e não demorar dias para baixar tudo), recomendo usar o estado de Roraima, instruções de como fazer isso estão dentro do stage-1.py
 
-O que cada programa faz:
+O que cada programa faz (**veja maiores detalhes na descrição/comentários dentro de cada programa**)
 
 * **stage-1.py:** download da lista de estados, cidades, zonas, seções
 * **stage-2.py:** download do arquivo 'aux' que contém informação da localização dos demais arquivos
