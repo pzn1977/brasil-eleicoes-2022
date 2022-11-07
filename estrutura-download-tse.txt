@@ -1,0 +1,84 @@
+Formato analisado atraves de observacao do funcionamento do website
+resultados.tse.jus.br analisado em 6/outubro/2022
+
+************************************************************************
+
+lista dos estados validos:  (zz corresponde a 'exterior')
+
+['ac', 'al', 'am', 'ap', 'ba', 'ce', 'df',
+ 'es', 'go', 'ma', 'mg', 'ms', 'mt', 'pa',
+ 'pb', 'pe', 'pi', 'pr', 'rj', 'rn', 'ro',
+ 'rr', 'rs', 'sc', 'se', 'sp', 'to', 'zz']
+
+************************************************************************
+
+download dos dados de configuracao de cada estado
+
+https://resultados.tse.jus.br/oficial/ele2022/arquivo-urna/406/config/{estado}/{estado}-p000406-cs.json
+  notacao: {x} corresponde ao parametro x (sem as chaves)
+  OBS: 406 corresponde ao codigo da eleicao do primeiro turno 2022
+  OBS: 407 corresponde ao codigo da eleicao do segundo turno 2022
+
+dentro de cada arquivo de configuracao voce encontra o nome e codigo do municipio, zonas e secoes eleitorais
+
+Exemplo do inicio do arquivo json para o estado 'ac':
+{'abr': [{'cd': 'AC',
+          'ds': 'ACRE',
+          'mu': [{'cd': '01066',
+                  'nm': 'PORTO WALTER',
+                  'zon': [{'cd': '0004',
+                           'sec': [{'ns': '0077', 'nsp': '0077'},
+                                   {'ns': '0078', 'nsp': '0078'},
+                                   {'ns': '0079', 'nsp': '0079'},
+...
+
+************************************************************************
+
+download dos dados gerais da urna
+
+https://resultados.tse.jus.br/oficial/ele2022/arquivo-urna/406/dados/{estado}/{codigo_numerico_do_municipio}/{zona}/{secao}/p000406-{estado}-m{codigo_numerico_do_municipio}-z{zona}-s{secao}-aux.json
+
+o arquivo json a seguir corresponde a urna:
+  estado=sp
+  municipio=61220
+  zona=0131
+  secao=0028
+
+{'dg': '03/10/2022',
+ 'ds': '',
+ 'f': 'O',
+ 'hashes': [{'dr': '02/10/2022',
+             'ds': '',
+             'hash': '69762d4962335837563069617669575044473679412b34624d5054586835365a497a50746a6243364b2b4d3d',
+             'hr': '20:15:13',
+             'nmarq': ['o00406-6122001310028.bu',
+                       'o00406-6122001310028.rdv',
+                       'o00406-6122001310028.logjez',
+                       'o00406-6122001310028.imgbu',
+                       'o00406-6122001310028.vscmr'],
+             'st': 'Totalizado'}],
+ 'hg': '01:40:26',
+ 'st': 'Totalizada'}
+
+nota: o arquivo possuira mais de um elemento na lista 'hashes' caso
+algo tenha falhado, por exemplo um com  'st' = 'Totalizado' e outro
+com data/hora('dr'/'hr') anterior e 'st' diferente
+
+************************************************************************
+
+download dos arquivos especificos da urna
+
+os arquivos sao os citados na lista 'nmarq', segue o exemplo da url
+para download de um deles:
+
+https://resultados.tse.jus.br/oficial/ele2022/arquivo-urna/406/dados/{estado}/{codigo_numerico_do_municipio}/{zona}/{secao}/{hash}/{nome_do_arquivo_nmarq}
+
+os nomes de arquivos que identifiquei sao:
+  .logjez -> log em modo texto, comprimido por protocolo 7zip
+  .imgbu  -> impressao do boletim de urna
+
+o mais encontrado foram arquivos nas extensoes: .imgbu .logjez .bu .rdv .vscmr
+em poucas urnas (geralmente no exterior): .imgbusa .logsajez .busa .rdv .vscsa
+
+no arquivo .imgbu (ou .imgbusa) foi possivel observar as quantidades
+de votos
