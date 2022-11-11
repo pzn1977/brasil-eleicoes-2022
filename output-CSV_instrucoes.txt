@@ -1,0 +1,9 @@
+find data -type f -name '*.txt' | LC_ALL=C sort > txt-files.txt
+
+./output-boletim-txt-unificado.pl | gzip -9 > boletins-turno2.txt.gz
+
+zcat boletins-turno2.txt.gz \
+ | ./output-CSV-presidente-por-municipio-1.pl \
+ | LC_ALL=C sort > output-presidente-por-municipio.csv
+
+./output-CSV-presidente-por-municipio-2.pl output-presidente-por-municipio.csv | gzip -9 > presidente-turno2-com-modelo-da-urna.csv.gz
